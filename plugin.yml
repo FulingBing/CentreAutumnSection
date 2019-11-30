@@ -1,0 +1,26 @@
+name: CentreAutumnSection
+main: com.github.FulingBing.CentreAutumnSection
+version: 1.0
+author: FulingBing
+commands:
+  cas:
+    description: cmd
+permissions:
+  CentreAutumnSection.*:
+    default: op
+    children:
+      CentreAutumnSection.reload: true
+      CentreAutumnSection.give: true
+      CentreAutumnSection.giveplayer: true
+      CentreAutumnSection.type: true
+      CentreAutumnSection.item: true
+  CentreAutumnSection.reload:
+    default: op
+  CentreAutumnSection.give:
+    default: op
+  CentreAutumnSection.giveplayer:
+    default: op
+  CentreAutumnSection.type:
+    default: op
+  CentreAutumnSection.item:
+    default: op

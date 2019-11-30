@@ -1,0 +1,79 @@
+RiddleNo: '&e你猜错了，再仔细想想吧'
+RiddleYes: '&e恭喜你猜对了'
+RiddleMsg: '&e额，其实这里说的打一XX，意思是谜底是XX，不是叫你去攻击...'
+MoonCakeGive: '&e咦，月饼中吃出了一张小纸条？'
+MoonCakeError: '&e%name%的合成表无效：合成表不完整，请检查是否为9X9'
+MoonCakeMiss: '&e%name%的合成表无效：所需物品%item%不存在'
+NoPermissions: '&e你没有权限使用这个指令'
+GiveError: '&e目标玩家的背包已满'
+GiveRiddle: '&e成功给与%player%一张谜语'
+GiveMiss: '&e目标玩家不在线'
+ChangeErr: '&e无法获取谜题，你的背包满了'
+ChangeTrue: '&a你得到了一个谜题，尝试解开它吧'
+ReOk: '&a重载完成'
+NeedPlayer: '&e这个命令应该由玩家执行'
+RiddleBlockAdd: '&a设置了一个谜题获取方块'
+RiddleBlockDel: '&e移除了一个谜题获取方块'
+RiddleItemGive: '&e成功给与%player%一个谜题获取方块调节器'
+HelpMsgMenu: '&a插件帮助'
+HelpMsg1: '&e/cas give &b给自己一张谜语'
+HelpMsg2: '&e/cas give <name> &b给玩家一张谜语'
+HelpMsg3: '&e/cas type &b查询手中物品的类型'
+HelpMsg4: '&e/cas item &b给自己一个谜题获取方块调节器'
+HelpMsg5: '&e/cas reload &b重新加载配置文件（修改合成表需重启服务器生效）'
+
+RiddleItem: '&a谜题获取方块调节器'
+RiddleLore:
+- '&b点击一个方块'
+- '&f当方块为谜题获取方块时，变更为普通方块'
+- '&f当方块为普通方块时，变更为谜题获取方块'
+- '&b点击一个实体'
+- '&f现实这个实体的类型'
+
+Jump: 2000
+JumpByTp: true
+
+RiddleName: '&a[猜谜]'
+RiddleList:
+  '1':
+    lore:
+    - '&b浑身绿色会爆炸'
+    - '&d打一香草暴徒'
+    - '&e找到你认为是谜底的暴徒，手持这个谜题去点它'
+    answer:
+    - 'Creeper'
+    cmd:
+    - 'say hello,%player%'
+  '2':
+    lore:
+    - '&b浑身金黄能吸水'
+    - '&d打一香草物品'
+    - '&e打开胸部，用这个谜题去点你认为是谜底的物品'
+    answer:
+    - 'Sponge'
+    cmd:
+    - 'say hello,%player%'
+
+MoonCakeList:
+  '1':
+    name: '&e五仁月饼'
+    lore: []
+    giveRiddle: 50
+    shape:
+    - 'WHEAT,SUGAR,WHEAT'
+    - 'SUGAR,COOKIE,SUGAR'
+    - 'WHEAT,SUGAR,WHEAT'
+    cmd:
+    - 'effect %player% 9 120 0'
+  '2':
+    name: '&e十仁月饼'
+    lore: []
+    giveRiddle: 100
+    shape:
+    - 'WHEAT,WHEAT,WHEAT'
+    - 'WHEAT,COOKIE,WHEAT'
+    - 'WHEAT,WHEAT,WHEAT'
+    cmd:
+    - 'effect %player% 9 240 0'
+
+RiddleBlock: []
