@@ -29,7 +29,7 @@ public class CentreAutumnSection extends JavaPlugin{
 			saveDefaultConfig();
 		}
 		//加载配置文件
-		readsize();
+		readsize(null);
 		//加载月饼的合成表
 		CentreAutumnSectionMoonCakeCore.loadRecipe();
 		Bukkit.getPluginManager().registerEvents(new CentreAutumnSectionRiddleListener(),this);
@@ -44,7 +44,8 @@ public class CentreAutumnSection extends JavaPlugin{
 		getLogger().info("插件停用");
 	}
 	
-	public void readsize(){
+	@SuppressWarnings("unused")
+	public void readsize(CommandSender sender){
 		CentreAutumnSectionConfig.setRiddleMsg(getzhcn(getConfig().getString("RiddleMsg")));
 		CentreAutumnSectionConfig.setRiddleName(getzhcn(getConfig().getString("RiddleName")));
 		CentreAutumnSectionConfig.setRiddleNo(getzhcn(getConfig().getString("RiddleNo")));
@@ -76,8 +77,31 @@ public class CentreAutumnSection extends JavaPlugin{
 			i++;
 		}
 		CentreAutumnSectionConfig.setMooncake(lc);
-		CentreAutumnSectionConfig.setJump(getConfig().getInt("Jump"));
-		CentreAutumnSectionConfig.setJumpByTp(getConfig().getBoolean("JumpByTp"));
+		CentreAutumnSectionConfig.setMoonTpError(getConfig().getString("MoonTpError"));
+		CentreAutumnSectionConfig.setMoonTp(getConfig().getString("MoonTp").split(","));
+		if(CentreAutumnSectionConfig.getMoonTp().length!=3) {
+			CentreAutumnSectionConfig.setMoonTp(new String[] {"~","~","~"});
+			if(sender==null) {
+				getLogger().info(CentreAutumnSectionConfig.getMoonTpError());
+			}else {
+				sender.sendMessage(CentreAutumnSectionConfig.getMoonTpError());
+			}
+		}
+		for(String tmp:CentreAutumnSectionConfig.getMoonTp()) {
+			if(!tmp.equals("~")) {
+				try {
+					Double d=Double.parseDouble(tmp);
+				} catch (Exception e) {
+					CentreAutumnSectionConfig.setMoonTp(new String[] {"~","~","~"});
+					if(sender==null) {
+						getLogger().info(CentreAutumnSectionConfig.getMoonTpError());
+					}else {
+						sender.sendMessage(CentreAutumnSectionConfig.getMoonTpError());
+					}
+					break;
+				}
+			}
+		}
 		CentreAutumnSectionConfig.setGiveError(getzhcn(getConfig().getString("GiveError")));
 		CentreAutumnSectionConfig.setNoPermissions(getzhcn(getConfig().getString("NoPermissions")));
 		CentreAutumnSectionConfig.setGiveRiddle(getzhcn(getConfig().getString("GiveRiddle")));
@@ -110,7 +134,7 @@ public class CentreAutumnSection extends JavaPlugin{
 					}
 				}
 				reloadConfig();
-				readsize();
+				readsize(sender);
 				sender.sendMessage(CentreAutumnSectionConfig.getReOk());
 				return true;
 			}

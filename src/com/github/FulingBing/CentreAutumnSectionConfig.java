@@ -19,8 +19,8 @@ public class CentreAutumnSectionConfig {
 	private static String MoonCakeError;
 	private static String MoonCakeMiss;
 	
-	private static int Jump;
-	private static boolean JumpByTp;
+	private static String[] MoonTp;
+	private static String MoonTpError;
 	
 	private static String NoPermissions;
 	private static String GiveError;
@@ -45,6 +45,18 @@ public class CentreAutumnSectionConfig {
 	private static List<String> RiddleLore=new ArrayList<String>();
 	private static List<String> RiddleBlock=new ArrayList<String>();
 
+	public static String getMoonTpError() {
+		return MoonTpError;
+	}
+	public static void setMoonTpError(String moonTpError) {
+		MoonTpError = moonTpError;
+	}
+	public static String[] getMoonTp() {
+		return MoonTp;
+	}
+	public static void setMoonTp(String[] moonTp) {
+		MoonTp = moonTp;
+	}
 	public static String getRiddleItemGive() {
 		return RiddleItemGive;
 	}
@@ -164,18 +176,6 @@ public class CentreAutumnSectionConfig {
 	}
 	public static void setGiveRiddle(String giveRiddle) {
 		GiveRiddle = giveRiddle;
-	}
-	public static boolean isJumpByTp() {
-		return JumpByTp;
-	}
-	public static void setJumpByTp(boolean jumpByTp) {
-		JumpByTp = jumpByTp;
-	}
-	public static int getJump() {
-		return Jump;
-	}
-	public static void setJump(int jump) {
-		Jump = jump;
 	}
 	public static List<CentreAutumnSectionRiddle> getRiddle() {
 		return riddle;
