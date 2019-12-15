@@ -11,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.util.Vector;
 
 import com.github.FulingBing.CentreAutumnSectionConfig;
 
@@ -19,7 +18,11 @@ public class CentreAutumnSectionLookMoonListener implements Listener{
 	//发射
 	@EventHandler(priority = EventPriority.NORMAL,ignoreCancelled=true)
 	public void BlockDispenseEvent(BlockDispenseEvent e) {
-		if(e.isCancelled() && CentreAutumnSectionConfig.getJump()!=0) {
+		if(e.isCancelled()) {
+			return;
+		}
+		String[] tpPoint=CentreAutumnSectionConfig.getMoonTp();
+		if(tpPoint[0].equals("~") && tpPoint[1].equals("~") && tpPoint[2].equals("~")) {
 			return;
 		}
 		Location loc=e.getBlock().getLocation();
@@ -43,21 +46,17 @@ public class CentreAutumnSectionLookMoonListener implements Listener{
 			return;
 		}
 		loc.getWorld().createExplosion(loc, 0.0F, false);
-		//Vector v=new Vector(0,CentreAutumnSectionConfig.getJump(),0);
-		//for(Player p:pl) {
-		//	p.setVelocity(v);
-		//}
-		//针对服务器的某种谜之操作
-		if(CentreAutumnSectionConfig.isJumpByTp()) {
-			loc.setY(loc.getY()+CentreAutumnSectionConfig.getJump());
-			for(Player p:pl) {
-				p.teleport(loc);
-			}
-		}else {
-			Vector v=new Vector(0,CentreAutumnSectionConfig.getJump(),0);
-			for(Player p:pl) {
-				p.setVelocity(v);
-			}
+		if(!tpPoint[0].equals("~")) {
+			loc.setX(Double.parseDouble(tpPoint[0]));
+		}
+		if(!tpPoint[1].equals("~")) {
+			loc.setY(Double.parseDouble(tpPoint[1]));
+		}
+		if(!tpPoint[2].equals("~")) {
+			loc.setZ(Double.parseDouble(tpPoint[2]));
+		}
+		for(Player p:pl) {
+			p.teleport(loc);
 		}
 	}
 }
